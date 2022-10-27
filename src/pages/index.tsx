@@ -14,6 +14,7 @@ import {
 import { NextPage } from 'next';
 import NextLink from 'next/link';
 import { NextSeo } from 'next-seo';
+import { BadgeLink } from 'shared/components';
 
 const useStyles = createStyles((theme) => {
   return {
@@ -71,21 +72,17 @@ const Home: NextPage = () => {
         </Group>
 
         <Group mt="lg" className={classes.badgeLinkContainer}>
-          <NextLink href="https://commitlint.js.org" passHref>
-            <Badge component="a">commitlint</Badge>
-          </NextLink>
-          <NextLink href="https://github.com/garmeeh/next-seo" passHref>
-            <Badge component="a">next-seo</Badge>
-          </NextLink>
-          <NextLink href="https://github.com/jquense/yup" passHref>
-            <Badge component="a">yup</Badge>
-          </NextLink>
-          <NextLink href="https://react-hook-form.com" passHref>
-            <Badge component="a">react-hook-form</Badge>
-          </NextLink>
-          <NextLink href="https://tanstack.com/query/v4" passHref>
-            <Badge component="a">react-query</Badge>
-          </NextLink>
+          <BadgeLink label="commitlint" href="https://commitlint.js.org" />
+          <BadgeLink
+            label="next-seo"
+            href="https://github.com/garmeeh/next-seo"
+          />
+          <BadgeLink label="yup" href="https://github.com/jquense/yup" />
+          <BadgeLink
+            label="react-hook-form"
+            href="https://react-hook-form.com"
+          />
+          <BadgeLink label="react-query" href="https://tanstack.com/query/v4" />
         </Group>
 
         <Group mt="4rem" mb="10rem">
