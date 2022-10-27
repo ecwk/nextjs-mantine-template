@@ -1,0 +1,40 @@
+name: 🚀 CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: 🚀 Deploy to VPS
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH
+        uses: appleboy/ssh-action@master
+        env:
+          APP_DIR: ${{ secrets.APP_DIR }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+          USERNAME: ${{ secrets.USERNAME }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          port: ${{ secrets.PORT }}
+          envs: APP_DIR,APP_NAME,USERNAME
+          script: |
+            # Setup Node.js
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+
+            # Setup pm2
+            export PATH=$PATH:/home/$USERNAME/.local/share/pnpm
+
+            cd $APP_DIR
+            git reset --hard
+            git pull
+            npm exec pnpm install
+            npm exec pnpm build
+            pm2 restart $APP_NAME

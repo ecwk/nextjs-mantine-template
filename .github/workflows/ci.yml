@@ -1,0 +1,38 @@
+name: 🧪 CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: 🔧🧪 Build and Test
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔥 Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.5.2
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🔧 Build
+        run: pnpm run build
+
+      - name: 🧪 Lint
+        run: pnpm run lint
