@@ -33,49 +33,7 @@ GitHub Actions with CI/CD workflows are included.
 ## Prerequisites
 
 - [pnpm](https://pnpm.io/)
-- [Node.js](https://nodejs.org/en/) (^v14.16.0)
-
-![](https://badgen.net/badge/stability/wip/red)
-
-## Whats Included
-
-### Libraries and Frameworks
-
-### 🏗 Next.js Layouts
-
-Next.js [Layouts](https://nextjs.org/docs/basic-features/layouts) are a great way to apply a consistent structure to your pages.
-
-Page-specific layouts can be rendered by providing the `getLayout` function.
-
-### 😎 Smart Form Components
-
-React Hook Form is used to create [Smart Form Components](https://react-hook-form.com/advanced-usage/#SmartFormComponent).
-
-`components/forms/example-form`
-
-```tsx
-interface IFormData {
-  username: string;
-  password: string;
-}
-
-export const ExampleForm = () => {
-  const methods = useForm<IFormData>();
-  const { classes } = useStyles();
-
-  const onSubmit = (data: IFormData) => console.log(data);
-
-  return (
-    <Form className={classes.form} methods={methods} onSubmit={onSubmit}>
-      <Form.TextInput name="username" label="Username" />
-      <Form.PasswordInput name="password" label="Password" />
-      <Form.Button type="submit">Submit</Form.Button>
-    </Form>
-  );
-};
-```
-
-This removes code duplication from registering inputs
+- [Node.js](https://nodejs.org/en/) (^v14.16.
 
 ## Getting Started
 
